@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:block": {
+    "description": {
+      "identifier": "cwickham:sap_boiler",
+      "menu_category": {
+        "category": "construction"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "Sap Boiler",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 3.0
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 6.0
+      },
+      "minecraft:geometry": {
+        "identifier": "minecraft:geometry.full_block"
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "stone",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:map_color": "#7f7f7f",
+      "minecraft:on_interact": {
+        "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:log', 'minecraft:log2', 'minecraft:oak_log', 'minecraft:spruce_log', 'minecraft:birch_log', 'minecraft:jungle_log', 'minecraft:acacia_log', 'minecraft:dark_oak_log', 'minecraft:mangrove_log', 'minecraft:cherry_log', 'minecraft:bamboo_block', 'minecraft:oak_sapling', 'minecraft:spruce_sapling', 'minecraft:birch_sapling', 'minecraft:jungle_sapling', 'minecraft:acacia_sapling', 'minecraft:dark_oak_sapling', 'minecraft:mangrove_propagule', 'minecraft:cherry_sapling', 'minecraft:bamboo_sapling')",
+        "event": "cwickham:give_syrup",
+        "target": "self"
+      },
+      "minecraft:custom_components": []
+    },
+    "events": {
+      "cwickham:give_syrup": {
+        "run_command": {
+          "target": "other",
+          "command": [
+            "give @s cwickham:syrup 1"
+          ]
+        }
+      }
+    },
+    "permutations": []
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "cwickham:recipe_cwickham_surprise"
+    },
+    "tags": ["crafting_table"],
+    "ingredients": [
+      {
+        "item": "minecraft:cooked_beef",
+        "quantity": 1
+      },
+      {
+        "item": "cwickham:syrup",
+        "quantity": 1
+      },
+      {
+        "item": "cwickham:coolwhip",
+        "quantity": 1
+      }
+    ],
+    "result": {
+      "item": "cwickham:cwickham_surprise",
+      "count": 1
+    },
+    "assume_symmetry": false
+  }
+}
