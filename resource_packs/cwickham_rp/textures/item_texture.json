@@ -1,0 +1,24 @@
+{
+  "resource_pack_name": "cwickham_rp",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "cwickham_butter": {
+      "textures": "textures/items/cwickham_butter"
+    },
+    "cwickham_cream": {
+      "textures": "textures/items/cwickham_cream"
+    },
+    "cwickham_syrup": {
+      "textures": "textures/items/cwickham_syrup"
+    },
+    "cwickham_whip": {
+      "textures": "textures/items/cwickham_whip"
+    },
+    "cwickham_coolwhip": {
+      "textures": "textures/items/cwickham_coolwhip"
+    },
+    "cwickham_surprise": {
+      "textures": "textures/items/cwickham_surprise"
+    }
+  }
+}
