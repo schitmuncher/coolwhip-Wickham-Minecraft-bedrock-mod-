@@ -3,7 +3,9 @@
   "minecraft:item": {
     "description": {
       "identifier": "cwickham:whip",
-      "category": "equipment"
+      "menu_category": {
+        "category": "equipment"
+      }
     },
     "components": {
       "minecraft:display_name": {
@@ -20,6 +22,14 @@
       },
       "minecraft:hand_equipped": {
         "value": true
+      },
+      "minecraft:damage": {
+        "value": 3
+      },
+      "minecraft:weapon": {
+        "on_hurt_entity": {
+          "hurt_owner": false
+        }
       }
     }
   }

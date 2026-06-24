@@ -3,7 +3,9 @@
   "minecraft:item": {
     "description": {
       "identifier": "cwickham:butter",
-      "category": "items"
+      "menu_category": {
+        "category": "items"
+      }
     },
     "components": {
       "minecraft:display_name": {
@@ -14,6 +16,31 @@
       },
       "minecraft:max_stack_size": {
         "value": 64
+      },
+      "minecraft:use_duration": {
+        "value": 32
+      },
+      "minecraft:use_animation": {
+        "value": "eat"
+      },
+      "minecraft:food": {
+        "nutrition": 2,
+        "saturation_modifier": "low",
+        "can_always_eat": false,
+        "effects": [
+          {
+            "name": "speed",
+            "chance": 1.0,
+            "duration": 10,
+            "amplifier": 1
+          },
+          {
+            "name": "nausea",
+            "chance": 1.0,
+            "duration": 5,
+            "amplifier": 0
+          }
+        ]
       }
     }
   }

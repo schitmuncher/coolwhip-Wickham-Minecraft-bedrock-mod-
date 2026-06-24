@@ -26,20 +26,34 @@
       },
       "minecraft:map_color": "#7f7f7f",
       "minecraft:on_interact": {
-        "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:log', 'minecraft:log2', 'minecraft:oak_log', 'minecraft:spruce_log', 'minecraft:birch_log', 'minecraft:jungle_log', 'minecraft:acacia_log', 'minecraft:dark_oak_log', 'minecraft:mangrove_log', 'minecraft:cherry_log', 'minecraft:bamboo_block', 'minecraft:oak_sapling', 'minecraft:spruce_sapling', 'minecraft:birch_sapling', 'minecraft:jungle_sapling', 'minecraft:acacia_sapling', 'minecraft:dark_oak_sapling', 'minecraft:mangrove_propagule', 'minecraft:cherry_sapling', 'minecraft:bamboo_sapling')",
-        "event": "cwickham:give_syrup",
+        "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:log', 'minecraft:log2', 'minecraft:oak_log', 'minecraft:spruce_log', 'minecraft:birch_log', 'minecraft:jungle_log', 'minecraft:acacia_log', 'minecraft:dark_oak_log', 'minecraft:mangrove_log', 'minecraft:cherry_log', 'minecraft:bamboo_block', 'minecraft:oak_sapling', 'minecraft:spruce_sapling', 'minecraft:birch_sapling', 'minecraft:jungle_sapling', 'minecraft:acacia_sapling', 'minecraft:dark_oak_sapling', 'minecraft:mangrove_propagule', 'minecraft:cherry_sapling', 'minecraft:bamboo_sapling') || q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:milk_bucket')",
+        "event": "cwickham:boiler_interact",
         "target": "self"
       },
       "minecraft:custom_components": []
     },
     "events": {
-      "cwickham:give_syrup": {
-        "run_command": {
-          "target": "other",
-          "command": [
-            "give @s cwickham:syrup 1"
-          ]
-        }
+      "cwickham:boiler_interact": {
+        "sequence": [
+          {
+            "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:log', 'minecraft:log2', 'minecraft:oak_log', 'minecraft:spruce_log', 'minecraft:birch_log', 'minecraft:jungle_log', 'minecraft:acacia_log', 'minecraft:dark_oak_log', 'minecraft:mangrove_log', 'minecraft:cherry_log', 'minecraft:bamboo_block', 'minecraft:oak_sapling', 'minecraft:spruce_sapling', 'minecraft:birch_sapling', 'minecraft:jungle_sapling', 'minecraft:acacia_sapling', 'minecraft:dark_oak_sapling', 'minecraft:mangrove_propagule', 'minecraft:cherry_sapling', 'minecraft:bamboo_sapling')",
+            "run_command": {
+              "target": "other",
+              "command": ["give @s cwickham:syrup 1"]
+            }
+          },
+          {
+            "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:milk_bucket')",
+            "run_command": {
+              "target": "other",
+              "command": [
+                "clear @s minecraft:milk_bucket 0 1",
+                "give @s cwickham:cream 1",
+                "give @s minecraft:bucket 1"
+              ]
+            }
+          }
+        ]
       }
     },
     "permutations": []
