@@ -1,0 +1,13 @@
+## CWickham Add-on – Item Display Names
+item.cwickham:butter.name=Butter
+item.cwickham:cream.name=Cream
+item.cwickham:syrup.name=Syrup
+item.cwickham:whip.name=Whip
+item.cwickham:coolwhip.name=Coolwhip
+item.cwickham:cwickham_surprise.name=CWickham Surprise
+
+## Block Display Names
+tile.cwickham:sap_boiler.name=Sap Boiler
+
+## Entity Display Names
+entity.cwickham:coolwhip_wickham.name=Coolwhip Wickham

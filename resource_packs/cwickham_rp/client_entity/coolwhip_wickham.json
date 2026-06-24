@@ -1,0 +1,40 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "cwickham:coolwhip_wickham",
+      "min_engine_version": "1.20.80",
+      "materials": {
+        "default": "villager_v2",
+        "clothed_v2": "villager_v2_clothed"
+      },
+      "textures": {
+        "default": "textures/entity/villager/coolwhip_wickham"
+      },
+      "geometry": {
+        "default": "geometry.villager.v2"
+      },
+      "render_controllers": [
+        "controller.render.villager_v2_masked"
+      ],
+      "animations": {
+        "move": "animation.villager.move",
+        "look_at_target": "animation.common.look_at_target",
+        "inspect_mob_hand": "animation.villager.inspect_mob_hand"
+      },
+      "scripts": {
+        "animate": [
+          "move",
+          "look_at_target",
+          {
+            "inspect_mob_hand": "query.is_trading"
+          }
+        ]
+      },
+      "spawn_egg": {
+        "base_color": "#5b813e",
+        "overlay_color": "#f5deb3"
+      }
+    }
+  }
+}

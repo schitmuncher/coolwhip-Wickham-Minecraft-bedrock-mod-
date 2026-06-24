@@ -1,0 +1,9 @@
+{
+  "resource_pack_name": "cwickham_rp",
+  "texture_name": "atlas.terrain",
+  "texture_data": {
+    "sap_boiler": {
+      "textures": "textures/blocks/sap_boiler"
+    }
+  }
+}
