@@ -4,6 +4,18 @@
   "texture_data": {
     "sap_boiler": {
       "textures": "textures/blocks/sap_boiler"
+    },
+    "tree_tap": {
+      "textures": "textures/blocks/tree_tap"
+    },
+    "sap_pipe": {
+      "textures": "textures/blocks/sap_pipe"
+    },
+    "sap_tank": {
+      "textures": "textures/blocks/sap_tank"
+    },
+    "syrup_tank": {
+      "textures": "textures/blocks/syrup_tank"
     }
   }
 }

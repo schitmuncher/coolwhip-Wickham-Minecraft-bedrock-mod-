@@ -41,6 +41,27 @@
           "trader_exp": 5
         }
       ]
+    },
+    {
+      "trades": [
+        {
+          "wants": [
+            {
+              "item": "cwickham:burnt_caramel",
+              "quantity": 5
+            }
+          ],
+          "gives": [
+            {
+              "item": "minecraft:diamond",
+              "quantity": 3
+            }
+          ],
+          "max_uses": 4,
+          "reward_exp": true,
+          "trader_exp": 10
+        }
+      ]
     }
   ]
 }

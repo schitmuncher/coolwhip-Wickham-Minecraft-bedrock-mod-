@@ -5,6 +5,9 @@
       "identifier": "cwickham:sap_boiler",
       "menu_category": {
         "category": "construction"
+      },
+      "states": {
+        "cwickham:is_boosted": [false, true]
       }
     },
     "components": {
@@ -26,7 +29,7 @@
       },
       "minecraft:map_color": "#7f7f7f",
       "minecraft:on_interact": {
-        "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:log', 'minecraft:log2', 'minecraft:oak_log', 'minecraft:spruce_log', 'minecraft:birch_log', 'minecraft:jungle_log', 'minecraft:acacia_log', 'minecraft:dark_oak_log', 'minecraft:mangrove_log', 'minecraft:cherry_log', 'minecraft:bamboo_block', 'minecraft:oak_sapling', 'minecraft:spruce_sapling', 'minecraft:birch_sapling', 'minecraft:jungle_sapling', 'minecraft:acacia_sapling', 'minecraft:dark_oak_sapling', 'minecraft:mangrove_propagule', 'minecraft:cherry_sapling', 'minecraft:bamboo_sapling') || q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:milk_bucket')",
+        "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:log', 'minecraft:log2', 'minecraft:oak_log', 'minecraft:spruce_log', 'minecraft:birch_log', 'minecraft:jungle_log', 'minecraft:acacia_log', 'minecraft:dark_oak_log', 'minecraft:mangrove_log', 'minecraft:cherry_log', 'minecraft:bamboo_block', 'minecraft:oak_sapling', 'minecraft:spruce_sapling', 'minecraft:birch_sapling', 'minecraft:jungle_sapling', 'minecraft:acacia_sapling', 'minecraft:dark_oak_sapling', 'minecraft:mangrove_propagule', 'minecraft:cherry_sapling', 'minecraft:bamboo_sapling') || q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:milk_bucket') || q.is_item_name_any('slot.weapon.mainhand', 0, 'cwickham:whip') || q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:redstone_block')",
         "event": "cwickham:boiler_interact",
         "target": "self"
       },
@@ -52,8 +55,33 @@
                 "give @s minecraft:bucket 1"
               ]
             }
+          },
+          {
+            "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'cwickham:whip')",
+            "trigger": {
+              "event": "cwickham:manual_tick",
+              "target": "self"
+            }
+          },
+          {
+            "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:redstone_block')",
+            "run_command": {
+              "target": "other",
+              "command": ["clear @s minecraft:redstone_block 0 1"]
+            },
+            "set_block_state": {
+              "cwickham:is_boosted": true
+            }
           }
         ]
+      },
+      "cwickham:manual_tick": {
+        "run_command": {
+          "target": "other",
+          "command": [
+            "give @s cwickham:syrup 1"
+          ]
+        }
       }
     },
     "permutations": []

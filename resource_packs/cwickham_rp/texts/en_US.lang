@@ -5,9 +5,15 @@ item.cwickham:syrup.name=Syrup
 item.cwickham:whip.name=Whip
 item.cwickham:coolwhip.name=Coolwhip
 item.cwickham:cwickham_surprise.name=CWickham Surprise
+item.cwickham:sap_bucket.name=Sap Bucket
+item.cwickham:burnt_caramel.name=Burnt Caramel
 
 ## Block Display Names
 tile.cwickham:sap_boiler.name=Sap Boiler
+tile.cwickham:tree_tap.name=Tree Tap
+tile.cwickham:sap_pipe.name=Sap Pipe
+tile.cwickham:sap_tank.name=Sap Tank
+tile.cwickham:syrup_tank.name=Syrup Tank
 
 ## Entity Display Names
 entity.cwickham:coolwhip_wickham.name=Coolwhip Wickham

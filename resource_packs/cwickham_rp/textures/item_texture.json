@@ -19,6 +19,12 @@
     },
     "cwickham_surprise": {
       "textures": "textures/items/cwickham_surprise"
+    },
+    "cwickham_sap_bucket": {
+      "textures": "textures/items/cwickham_sap_bucket"
+    },
+    "cwickham_burnt_caramel": {
+      "textures": "textures/items/cwickham_burnt_caramel"
     }
   }
 }
