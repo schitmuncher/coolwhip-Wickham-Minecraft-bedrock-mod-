@@ -1,0 +1,80 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:block": {
+    "description": {
+      "identifier": "cwickham:sap_tank",
+      "menu_category": {
+        "category": "construction"
+      },
+      "states": {
+        "cwickham:fill_level": [0, 1, 2, 3, 4]
+      }
+    },
+    "components": {
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 2.5
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 5.0
+      },
+      "minecraft:geometry": {
+        "identifier": "minecraft:geometry.full_block"
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "sap_tank",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:map_color": "#d4a017",
+      "minecraft:on_interact": {
+        "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'cwickham:sap_bucket') && q.block_state('cwickham:fill_level') < 4",
+        "event": "cwickham:add_sap",
+        "target": "self"
+      }
+    },
+    "events": {
+      "cwickham:add_sap": {
+        "set_block_state": {
+          "cwickham:fill_level": "q.block_state('cwickham:fill_level') + 1"
+        },
+        "run_command": {
+          "target": "other",
+          "command": ["clear @s cwickham:sap_bucket 0 1"]
+        }
+      }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('cwickham:fill_level') == 0",
+        "components": {
+          "minecraft:display_name": "Sap Tank (Empty)"
+        }
+      },
+      {
+        "condition": "q.block_state('cwickham:fill_level') == 1",
+        "components": {
+          "minecraft:display_name": "Sap Tank (25% Full)"
+        }
+      },
+      {
+        "condition": "q.block_state('cwickham:fill_level') == 2",
+        "components": {
+          "minecraft:display_name": "Sap Tank (50% Full)"
+        }
+      },
+      {
+        "condition": "q.block_state('cwickham:fill_level') == 3",
+        "components": {
+          "minecraft:display_name": "Sap Tank (75% Full)"
+        }
+      },
+      {
+        "condition": "q.block_state('cwickham:fill_level') == 4",
+        "components": {
+          "minecraft:display_name": "Sap Tank (100% Full)"
+        }
+      }
+    ]
+  }
+}

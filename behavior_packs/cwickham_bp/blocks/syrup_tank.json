@@ -1,0 +1,83 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:block": {
+    "description": {
+      "identifier": "cwickham:syrup_tank",
+      "menu_category": {
+        "category": "construction"
+      },
+      "states": {
+        "cwickham:fill_level": [0, 1, 2, 3, 4]
+      }
+    },
+    "components": {
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 2.5
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 5.0
+      },
+      "minecraft:geometry": {
+        "identifier": "minecraft:geometry.full_block"
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "syrup_tank",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:map_color": "#8b2500",
+      "minecraft:on_interact": {
+        "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:glass_bottle') && q.block_state('cwickham:fill_level') > 0",
+        "event": "cwickham:drain_syrup",
+        "target": "self"
+      }
+    },
+    "events": {
+      "cwickham:drain_syrup": {
+        "set_block_state": {
+          "cwickham:fill_level": "q.block_state('cwickham:fill_level') - 1"
+        },
+        "run_command": {
+          "target": "other",
+          "command": [
+            "clear @s minecraft:glass_bottle 0 1",
+            "give @s cwickham:syrup 1"
+          ]
+        }
+      }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('cwickham:fill_level') == 0",
+        "components": {
+          "minecraft:display_name": "Syrup Tank (Empty)"
+        }
+      },
+      {
+        "condition": "q.block_state('cwickham:fill_level') == 1",
+        "components": {
+          "minecraft:display_name": "Syrup Tank (25% Full)"
+        }
+      },
+      {
+        "condition": "q.block_state('cwickham:fill_level') == 2",
+        "components": {
+          "minecraft:display_name": "Syrup Tank (50% Full)"
+        }
+      },
+      {
+        "condition": "q.block_state('cwickham:fill_level') == 3",
+        "components": {
+          "minecraft:display_name": "Syrup Tank (75% Full)"
+        }
+      },
+      {
+        "condition": "q.block_state('cwickham:fill_level') == 4",
+        "components": {
+          "minecraft:display_name": "Syrup Tank (100% Full)"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:block": {
+    "description": {
+      "identifier": "cwickham:tree_tap",
+      "menu_category": {
+        "category": "construction"
+      },
+      "states": {
+        "cwickham:facing_direction": ["north", "south", "east", "west"]
+      }
+    },
+    "components": {
+      "minecraft:display_name": "Tree Tap",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 1.0
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 2.0
+      },
+      "minecraft:geometry": {
+        "identifier": "minecraft:geometry.full_block"
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "tree_tap",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:map_color": "#6b3a2a",
+      "minecraft:on_interact": {
+        "condition": "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:bucket')",
+        "event": "cwickham:tap_sap",
+        "target": "self"
+      }
+    },
+    "events": {
+      "cwickham:tap_sap": {
+        "run_command": {
+          "target": "other",
+          "command": [
+            "give @s cwickham:sap_bucket 1",
+            "clear @s minecraft:bucket 0 1"
+          ]
+        }
+      }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('cwickham:facing_direction') == 'north'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, 0, 0] }
+        }
+      },
+      {
+        "condition": "q.block_state('cwickham:facing_direction') == 'south'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, 180, 0] }
+        }
+      },
+      {
+        "condition": "q.block_state('cwickham:facing_direction') == 'east'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, -90, 0] }
+        }
+      },
+      {
+        "condition": "q.block_state('cwickham:facing_direction') == 'west'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, 90, 0] }
+        }
+      }
+    ]
+  }
+}
