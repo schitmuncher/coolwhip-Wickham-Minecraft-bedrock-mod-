@@ -18,6 +18,8 @@ Namespace: **`cwickham:`**
 10. [Resource Pack](#resource-pack)
 11. [Adding Textures](#adding-textures)
 12. [Known Limitations & Notes](#known-limitations--notes)
+13. [3D Custom Geometry](#3d-custom-geometry)
+14. [Natural World Spawning](#natural-world-spawning)
 
 ---
 
@@ -29,6 +31,8 @@ coolwhip-Wickham-Minecraft-bedrock-mod-/
 │   └── cwickham_bp/
 │       ├── manifest.json
 │       ├── blocks/
+│       │   ├── placed_pint.json
+│       │   ├── pub_bench.json
 │       │   ├── sap_boiler.json
 │       │   ├── sap_pipe.json
 │       │   ├── sap_tank.json
@@ -52,13 +56,19 @@ coolwhip-Wickham-Minecraft-bedrock-mod-/
 │       │   └── recipe_cwickham_surprise.json
 │       ├── scripts/
 │       │   └── main.js
+│       ├── spawn_rules/
+│       │   └── coolwhip_wickham.json
 │       └── trading/
 │           └── coolwhip_wickham_trades.json
 └── resource_packs/
     └── cwickham_rp/
+        ├── blocks.json
         ├── manifest.json
         ├── client_entity/
         │   └── coolwhip_wickham.json
+        ├── models/
+        │   └── blocks/
+        │       └── placed_pint.geo.json
         ├── texts/
         │   └── en_US.lang
         └── textures/
@@ -259,6 +269,35 @@ Stores processed syrup. Filled automatically by the Sap Boiler script. Drained b
 
 ---
 
+### `cwickham:placed_pint`
+A small decorative 3D pint-glass block placed in the world when Wickham's Brew is used on a surface. Uses a custom bone-rigged geometry model.
+
+**3D Model:** `geometry.placed_pint` (see [3D Custom Geometry](#3d-custom-geometry))
+
+**Collision / Selection box:** 4×6×4 units, sitting on the block floor.
+
+**Interaction:** Right-click with anything → picks up the pint and returns 1× `cwickham:wickham_brew` to inventory.
+
+> The pint is non-stackable as a placed object; picking it up restores the brew item.
+
+---
+
+### `cwickham:pub_bench`
+A decorative wooden bench for pub interiors. Exactly **half a block tall**, functioning as a solid bottom-slab shape players can step onto.
+
+| Property | Value |
+|---|---|
+| Material | Wood |
+| Destroy time | 2.0 s |
+| Explosion resistance | 3.0 |
+| Height | 8/16 units (half block) |
+| Category | Construction |
+| Flammable | ✅ Yes |
+
+Pairs naturally with `cwickham:placed_pint` for pub-themed builds. Supply `textures/blocks/pub_bench.png` (16×16 PNG) to texture it.
+
+---
+
 ## Crafting Recipes
 
 ### Coolwhip (`cwickham:recipe_coolwhip`)
@@ -412,6 +451,8 @@ resource_packs/cwickham_rp/textures/blocks/
   sap_pipe.png
   sap_tank.png
   syrup_tank.png
+  pub_bench.png
+  placed_pint.png
 ```
 
 **Entity texture** (128×64 PNG, matching villager v2 UV layout):
@@ -429,3 +470,46 @@ resource_packs/cwickham_rp/textures/entity/villager/
 - **Script scan radius:** The automation script scans within 32 blocks of each player. Boilers placed further than 32 blocks from any player won't process until a player comes within range. This is intentional to avoid performance issues.
 - **`spawnItem` API:** The burnt caramel spawn in the script uses `dimension.spawnItem()` with a fallback to a `/summon` command if the API call fails on older engine versions.
 - **Experimental APIs:** The scripting module (`scripts/main.js`) requires the *"Beta APIs"* experimental toggle to be enabled in the world settings.
+- **`placed_pint` placement:** The `cwickham:placed_pint` block is placed via the `cwickham:wickham_brew` item's `on_use` block-face interaction. It has no menu category (`none`) and cannot be obtained directly from the creative inventory.
+- **Pub bench collision:** The pub bench uses an 8-unit-tall collision box (half block). Players can walk onto it directly from the ground. Jumping is not required.
+
+---
+
+## 3D Custom Geometry
+
+**File:** `resource_packs/cwickham_rp/models/blocks/placed_pint.geo.json`  
+**Identifier:** `geometry.placed_pint`  
+**Format version:** `1.12.0`
+
+The placed pint is the first block in the mod to use a **custom 3D bone-rigged model** instead of a full block. It consists of three bones:
+
+| Bone | Description | Origin | Size |
+|---|---|---|---|
+| `pint_base` | Narrow flat base of the glass | [-1.5, 0, -1.5] | [3, 1, 3] |
+| `pint_body` | Main cylindrical body | [-2, 1, -2] | [4, 4, 4] |
+| `pint_rim` | Slightly flared top rim | [-2, 5, -2] | [4, 1, 4] |
+
+The total model stands **6 units tall** (6/16 of a full block) and is centred on the block floor. The texture atlas uses a 16×16 texture sheet (`placed_pint.png`) with UV coordinates packed to fit all three cubes.
+
+The geometry is referenced in:
+- `behavior_packs/cwickham_bp/blocks/placed_pint.json` → `"minecraft:geometry": { "identifier": "geometry.placed_pint" }`
+- `resource_packs/cwickham_rp/blocks.json` → `"cwickham:placed_pint": { ... }`
+
+---
+
+## Natural World Spawning
+
+**File:** `behavior_packs/cwickham_bp/spawn_rules/coolwhip_wickham.json`
+
+Coolwhip Wickham now spawns **naturally** in the world without a spawn egg. The spawn rules are:
+
+| Property | Value |
+|---|---|
+| Biomes | `forest`, `taiga` |
+| Surface spawn | ✅ Yes (surface only) |
+| Light level | 7–15 (daytime surface) |
+| Spawn weight | 5 (rare — comparable to a wandering trader) |
+| Herd size | 1 (always alone) |
+| Population pool | `ambient` |
+
+He will be found wandering through forest and taiga biomes during the day, alone, like a mysterious purveyor of artisanal goods. His rarity (weight 5) makes encounters feel meaningful — you won't stumble across him every few minutes.

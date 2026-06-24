@@ -1,0 +1,47 @@
+{
+  "format_version": [1, 1, 0],
+  "cwickham:placed_pint": {
+    "textures": "placed_pint",
+    "sound": "wood",
+    "carried_textures": "placed_pint",
+    "isotropic": false
+  },
+  "cwickham:sap_tank": {
+    "textures": {
+      "up": "sap_tank",
+      "down": "sap_tank",
+      "side": "sap_tank"
+    },
+    "sound": "stone",
+    "isotropic": false
+  },
+  "cwickham:syrup_tank": {
+    "textures": {
+      "up": "syrup_tank",
+      "down": "syrup_tank",
+      "side": "syrup_tank"
+    },
+    "sound": "stone",
+    "isotropic": false
+  },
+  "cwickham:pub_bench": {
+    "textures": "pub_bench",
+    "sound": "wood",
+    "isotropic": false
+  },
+  "cwickham:sap_boiler": {
+    "textures": "sap_boiler",
+    "sound": "stone",
+    "isotropic": false
+  },
+  "cwickham:sap_pipe": {
+    "textures": "sap_pipe",
+    "sound": "metal",
+    "isotropic": false
+  },
+  "cwickham:tree_tap": {
+    "textures": "tree_tap",
+    "sound": "wood",
+    "isotropic": false
+  }
+}
