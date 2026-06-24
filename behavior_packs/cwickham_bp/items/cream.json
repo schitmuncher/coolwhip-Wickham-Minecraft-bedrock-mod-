@@ -1,0 +1,20 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:item": {
+    "description": {
+      "identifier": "cwickham:cream",
+      "category": "items"
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Cream"
+      },
+      "minecraft:icon": {
+        "texture": "cwickham_cream"
+      },
+      "minecraft:max_stack_size": {
+        "value": 64
+      }
+    }
+  }
+}
