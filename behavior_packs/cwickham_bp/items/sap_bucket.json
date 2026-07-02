@@ -3,7 +3,9 @@
   "minecraft:item": {
     "description": {
       "identifier": "cwickham:sap_bucket",
-      "category": "items"
+      "menu_category": {
+        "category": "items"
+      }
     },
     "components": {
       "minecraft:display_name": {

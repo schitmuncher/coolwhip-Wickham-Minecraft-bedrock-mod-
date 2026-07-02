@@ -25,6 +25,9 @@
     },
     "cwickham_burnt_caramel": {
       "textures": "textures/items/cwickham_burnt_caramel"
+    },
+    "cwickham_wickham_brew": {
+      "textures": "textures/items/cwickham_wickham_brew"
     }
   }
 }

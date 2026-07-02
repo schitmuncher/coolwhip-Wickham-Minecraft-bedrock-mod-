@@ -3,7 +3,9 @@
   "minecraft:item": {
     "description": {
       "identifier": "cwickham:cwickham_surprise",
-      "category": "food"
+      "menu_category": {
+        "category": "items"
+      }
     },
     "components": {
       "minecraft:display_name": {
@@ -22,7 +24,7 @@
         "value": "eat"
       },
       "minecraft:food": {
-        "nutrition": 4,
+        "nutrition": 20,
         "saturation_modifier": "supernatural",
         "can_always_eat": true,
         "effects": [

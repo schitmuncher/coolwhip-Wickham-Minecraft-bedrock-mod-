@@ -1,0 +1,25 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "cwickham:recipe_pub_bench"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      "PPP",
+      "S S"
+    ],
+    "key": {
+      "P": {
+        "item": "minecraft:oak_planks"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "cwickham:pub_bench",
+      "count": 2
+    }
+  }
+}

@@ -2,20 +2,20 @@
   "format_version": "1.20.80",
   "minecraft:item": {
     "description": {
-      "identifier": "cwickham:syrup",
+      "identifier": "cwickham:wickham_brew",
       "menu_category": {
         "category": "items"
       }
     },
     "components": {
       "minecraft:display_name": {
-        "value": "Syrup"
+        "value": "Wickham's Artisanal Brew"
       },
       "minecraft:icon": {
-        "texture": "cwickham_syrup"
+        "texture": "cwickham_wickham_brew"
       },
       "minecraft:max_stack_size": {
-        "value": 16
+        "value": 4
       },
       "minecraft:use_duration": {
         "value": 40
@@ -24,17 +24,27 @@
         "value": "drink"
       },
       "minecraft:food": {
-        "nutrition": 0,
-        "saturation_modifier": "poor",
+        "nutrition": 2,
+        "saturation_modifier": "low",
         "can_always_eat": true,
         "effects": [
           {
-            "name": "speed",
+            "name": "strength",
             "chance": 1.0,
-            "duration": 15,
-            "amplifier": 2
+            "duration": 45,
+            "amplifier": 0
+          },
+          {
+            "name": "nausea",
+            "chance": 1.0,
+            "duration": 12,
+            "amplifier": 0
           }
         ]
+      },
+      "minecraft:block_placer": {
+        "block": "cwickham:placed_pint",
+        "use_on": []
       }
     }
   }

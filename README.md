@@ -48,12 +48,16 @@ coolwhip-Wickham-Minecraft-bedrock-mod-/
 │       │   ├── cwickham_surprise.json
 │       │   ├── sap_bucket.json
 │       │   ├── syrup.json
-│       │   └── whip.json
+│       │   ├── whip.json
+│       │   └── wickham_brew.json
 │       ├── loot_tables/
+│       │   ├── empty.json
 │       │   └── syrup_from_log.json
 │       ├── recipes/
 │       │   ├── recipe_coolwhip.json
-│       │   └── recipe_cwickham_surprise.json
+│       │   ├── recipe_cwickham_surprise.json
+│       │   ├── recipe_pub_bench.json
+│       │   └── recipe_wickham_brew.json
 │       ├── scripts/
 │       │   └── main.js
 │       ├── spawn_rules/
@@ -70,7 +74,8 @@ coolwhip-Wickham-Minecraft-bedrock-mod-/
         │   └── blocks/
         │       └── placed_pint.geo.json
         ├── texts/
-        │   └── en_US.lang
+        │   ├── en_US.lang
+        │   └── languages.json
         └── textures/
             ├── item_texture.json
             ├── terrain_texture.json
@@ -119,7 +124,7 @@ A basic ingredient obtained by processing a Milk Bucket in the Sap Boiler. Used 
 ### `cwickham:syrup`
 | Property | Value |
 |---|---|
-| Stack size | 64 |
+| Stack size | 16 |
 | Category | Items |
 | Drinkable | ✅ Yes (honey-bottle animation) |
 | Nutrition | 0 |
@@ -161,8 +166,8 @@ Light and fluffy. Crafted by whipping a Milk Bucket. An essential ingredient in 
 | Property | Value |
 |---|---|
 | Stack size | 64 |
-| Category | Food |
-| Nutrition | 4 |
+| Category | Items |
+| Nutrition | 20 |
 | Saturation | Supernatural |
 | Can always eat | ✅ Yes |
 | Effects | Regeneration II (20 s), Absorption IV (120 s), Resistance I (300 s), Fire Resistance I (300 s) |
@@ -189,6 +194,24 @@ A bucket filled with raw tree sap. Obtained by right-clicking a **Tree Tap** wit
 | Fuel duration | 2400 ticks (same as a Dried Kelp Block) |
 
 A byproduct of the boiling process — has a **10% chance** to drop on top of the Sap Boiler every time a successful boil cycle completes. Can be used as furnace fuel. Can also be traded to Coolwhip Wickham for diamonds (see Trade Table).
+
+---
+
+### `cwickham:wickham_brew`
+| Property | Value |
+|---|---|
+| Stack size | 4 |
+| Category | Items |
+| Drinkable | ✅ Yes (honey-bottle animation) |
+| Nutrition | 2 |
+| Saturation | Low |
+| Can always eat | ✅ Yes |
+| Effects on drink | Strength I (45 s), Nausea I (12 s) |
+| Place on block face | Places `cwickham:placed_pint` block |
+
+Wickham's signature brew. Drinking it grants a burst of strength at the cost of a spinning head. Right-clicking on a flat surface places it down as a decorative **Frothy Pint** block — picking up the pint returns the brew to your inventory.
+
+**Crafting:** 1× `minecraft:glass_bottle` + 1× `cwickham:syrup` → 1× `cwickham:wickham_brew`
 
 ---
 
@@ -327,6 +350,35 @@ Pairs naturally with `cwickham:placed_pint` for pub-themed builds. Supply `textu
 
 ---
 
+### Wickham's Artisanal Brew (`cwickham:recipe_wickham_brew`)
+**Type:** Shapeless — Crafting Table
+
+| Ingredient | Qty |
+|---|---|
+| `minecraft:glass_bottle` | 1 |
+| `cwickham:syrup` | 1 |
+
+**Result:** 1× `cwickham:wickham_brew`
+
+---
+
+### Pub Bench (`cwickham:recipe_pub_bench`)
+**Type:** Shaped — Crafting Table
+
+```
+PPP
+S S
+```
+
+| Key | Item |
+|---|---|
+| `P` | `minecraft:oak_planks` |
+| `S` | `minecraft:stick` |
+
+**Result:** 2× `cwickham:pub_bench`
+
+---
+
 ## Custom Entity — Coolwhip Wickham
 
 **Identifier:** `cwickham:coolwhip_wickham`  
@@ -401,8 +453,8 @@ The script scans all blocks within **32 blocks** of any online player across the
 
 **Pack:** `cwickham_rp`
 
-### Localization (`texts/en_US.lang`)
-All custom items, blocks, and entities have clean English display names registered.
+### Localization (`texts/en_US.lang` + `texts/languages.json`)
+All custom items, blocks, and entities have clean English display names registered. `languages.json` registers `en_US` so Bedrock loads the lang file correctly.
 
 ### Item Texture Atlas (`textures/item_texture.json`)
 Maps these texture keys to PNG file paths:
@@ -417,9 +469,10 @@ Maps these texture keys to PNG file paths:
 | `cwickham_surprise` | `textures/items/cwickham_surprise.png` |
 | `cwickham_sap_bucket` | `textures/items/cwickham_sap_bucket.png` |
 | `cwickham_burnt_caramel` | `textures/items/cwickham_burnt_caramel.png` |
+| `cwickham_wickham_brew` | `textures/items/cwickham_wickham_brew.png` |
 
 ### Terrain Texture Atlas (`textures/terrain_texture.json`)
-Maps the `sap_boiler` terrain key to `textures/blocks/sap_boiler.png`.
+Maps all custom block texture keys to PNG file paths under `textures/blocks/`.
 
 ### Client Entity (`client_entity/coolwhip_wickham.json`)
 Defines the full render setup for Coolwhip Wickham using vanilla villager geometry, materials, animations, and render controllers.
@@ -441,6 +494,7 @@ resource_packs/cwickham_rp/textures/items/
   cwickham_surprise.png
   cwickham_sap_bucket.png
   cwickham_burnt_caramel.png
+  cwickham_wickham_brew.png
 ```
 
 **Block textures** (16×16 PNG):
@@ -468,10 +522,11 @@ resource_packs/cwickham_rp/textures/entity/villager/
 - **Whip "return on craft" mechanic:** Bedrock Edition has no native "return item" component for crafting recipes. The whip is consumed normally (1 durability per craft). This is correct Bedrock behaviour.
 - **`minecraft:on_interact` single-trigger:** Bedrock blocks only support one `minecraft:on_interact` component. Multiple interaction types are handled via a `sequence` event with per-step `condition` queries.
 - **Script scan radius:** The automation script scans within 32 blocks of each player. Boilers placed further than 32 blocks from any player won't process until a player comes within range. This is intentional to avoid performance issues.
-- **`spawnItem` API:** The burnt caramel spawn in the script uses `dimension.spawnItem()` with a fallback to a `/summon` command if the API call fails on older engine versions.
+- **`spawnItem` API:** The burnt caramel spawn in the script uses `dimension.spawnItem()` with a proper `ItemStack` from `@minecraft/server`. This requires Beta APIs to be enabled.
 - **Experimental APIs:** The scripting module (`scripts/main.js`) requires the *"Beta APIs"* experimental toggle to be enabled in the world settings.
-- **`placed_pint` placement:** The `cwickham:placed_pint` block is placed via the `cwickham:wickham_brew` item's `on_use` block-face interaction. It has no menu category (`none`) and cannot be obtained directly from the creative inventory.
+- **`placed_pint` placement:** The `cwickham:placed_pint` block is placed via the `cwickham:wickham_brew` item's block placer component. It has no menu category (`none`) and cannot be obtained directly from the creative inventory — only by picking up a placed pint or using commands.
 - **Pub bench collision:** The pub bench uses an 8-unit-tall collision box (half block). Players can walk onto it directly from the ground. Jumping is not required.
+- **Missing textures:** All custom item and block PNGs must be supplied manually (see [Adding Textures](#adding-textures)). Until present, items show as magenta missing-texture icons.
 
 ---
 

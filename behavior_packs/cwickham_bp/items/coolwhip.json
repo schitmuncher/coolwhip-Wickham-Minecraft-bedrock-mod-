@@ -3,7 +3,9 @@
   "minecraft:item": {
     "description": {
       "identifier": "cwickham:coolwhip",
-      "category": "food"
+      "menu_category": {
+        "category": "items"
+      }
     },
     "components": {
       "minecraft:display_name": {

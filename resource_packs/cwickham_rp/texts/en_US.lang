@@ -1,19 +1,22 @@
 ## CWickham Add-on – Item Display Names
-item.cwickham:butter.name=Butter
-item.cwickham:cream.name=Cream
-item.cwickham:syrup.name=Syrup
-item.cwickham:whip.name=Whip
-item.cwickham:coolwhip.name=Coolwhip
-item.cwickham:cwickham_surprise.name=CWickham Surprise
+item.cwickham:butter.name=Stick of Butter
+item.cwickham:cream.name=Fresh Cream
+item.cwickham:syrup.name=Tree Syrup
+item.cwickham:whip.name=Leather Whip
+item.cwickham:coolwhip.name=Coolwhip Whipped Cream
+item.cwickham:cwickham_surprise.name=The Cwickham Surprise
 item.cwickham:sap_bucket.name=Sap Bucket
-item.cwickham:burnt_caramel.name=Burnt Caramel
+item.cwickham:burnt_caramel.name=Burnt Industrial Caramel
+item.cwickham:wickham_brew.name=Wickham's Artisanal Brew
 
 ## Block Display Names
-tile.cwickham:sap_boiler.name=Sap Boiler
-tile.cwickham:tree_tap.name=Tree Tap
-tile.cwickham:sap_pipe.name=Sap Pipe
-tile.cwickham:sap_tank.name=Sap Tank
-tile.cwickham:syrup_tank.name=Syrup Tank
+tile.cwickham:tree_tap.name=Industrial Tree Tap
+tile.cwickham:sap_tank.name=Raw Sap Storage Tank
+tile.cwickham:sap_boiler.name=Automated Sap Boiler
+tile.cwickham:sap_pipe.name=Reinforced Fluid Pipe
+tile.cwickham:syrup_tank.name=Refined Syrup Tank
+tile.cwickham:placed_pint.name=Frothy Pint
+tile.cwickham:pub_bench.name=Pub Bench
 
 ## Entity Display Names
 entity.cwickham:coolwhip_wickham.name=Coolwhip Wickham

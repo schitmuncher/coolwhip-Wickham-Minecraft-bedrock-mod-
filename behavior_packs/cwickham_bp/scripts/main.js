@@ -1,4 +1,4 @@
-import { world, system } from "@minecraft/server";
+import { world, system, ItemStack } from "@minecraft/server";
 
 const SAP_BOILER_ID     = "cwickham:sap_boiler";
 const SAP_TANK_ID       = "cwickham:sap_tank";
@@ -130,19 +130,9 @@ function processBoilCycle(sapTank, syrupTank, units) {
 function spawnItemAbove(dimension, pos, itemId) {
   try {
     const spawnPos = { x: pos.x + 0.5, y: pos.y + 1.2, z: pos.z + 0.5 };
-    dimension.spawnItem(
-      new (/** @type {any} */ (world).constructor.ItemStack ?? Object)(itemId, 1),
-      spawnPos
-    );
+    dimension.spawnItem(new ItemStack(itemId, 1), spawnPos);
   } catch {
-    // spawnItem requires an ItemStack; fall back to a command if the API call fails
-    try {
-      dimension.runCommand(
-        `summon item ${pos.x + 0.5} ${pos.y + 1} ${pos.z + 0.5} {"item":{"id":"${itemId}","Count":1}}`
-      );
-    } catch {
-      // If both approaches fail, silently skip rather than crashing
-    }
+    // Non-critical; skip silently if spawn fails (e.g. unloaded chunk)
   }
 }
 

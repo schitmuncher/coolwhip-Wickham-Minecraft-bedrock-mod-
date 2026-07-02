@@ -16,6 +16,12 @@
     },
     "syrup_tank": {
       "textures": "textures/blocks/syrup_tank"
+    },
+    "placed_pint": {
+      "textures": "textures/blocks/placed_pint"
+    },
+    "pub_bench": {
+      "textures": "textures/blocks/pub_bench"
     }
   }
 }
